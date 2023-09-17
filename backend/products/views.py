@@ -25,15 +25,27 @@ product_list_create_view = ProductListCreateAPIView.as_view()
 class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    # lookup field = 'pk'
+    # lookup_field = 'pk'
 
 product_detail_view = ProductDetailAPIView.as_view()
 
-class ProductListAPIView(generics.ListAPIView):
+class ProductUpdateAPIView(generics.UpdateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    lookup_field = 'pk'
 
-product_list_view = ProductListAPIView.as_view()
+    def perform_update(self, serializer):
+        instance = serializer.save()
+        if instance.content is None:
+            content = instance.title
+
+product_update_view = ProductUpdateAPIView.as_view()
+
+# class ProductListAPIView(generics.ListAPIView):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
+
+# product_list_view = ProductListAPIView.as_view()
 
 @api_view(['GET', 'POST'])
 def product_alt_view(request, pk=None, *args, **kwargs):
