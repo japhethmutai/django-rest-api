@@ -3,9 +3,8 @@ import requests
 endpoint = "http://localhost:8000/api/products/"
 
 data = {
-    "title": "Learn simply",
-    "content": "Learning Django rest framework is really easy",
-    "price": 44.99
+    "title": "Learn the hard way!",
+    "price": 32.99
 }
 
 get_response = requests.post(endpoint, json=data) # HTTP Request
