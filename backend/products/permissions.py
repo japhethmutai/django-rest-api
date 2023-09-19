@@ -1,6 +1,5 @@
 from rest_framework import permissions
 
-
 class IsStaffEditorPermission(permissions.DjangoModelPermissions):
     perms_map = {
         'GET': ['%(app_label)s.view_%(model_name)s'],
@@ -21,7 +20,7 @@ class IsStaffEditorPermission(permissions.DjangoModelPermissions):
     #     user = request.user
     #     print(user.get_all_permissions())
     #     if user.is_staff:
-    #         if user.has_perm("products.add_product"):
+    #         if user.has_perm("products.add_product"): # "app_name.verb_model_name"
     #             return True
     #         if user.has_perm("products.delete_product"):
     #             return True
