@@ -5,7 +5,7 @@ from .models import Product
 from . import validators
 
 class ProductSerializer(serializers.ModelSerializer):
-    user = UserPublicSerializer(read_only=True)
+    owner = UserPublicSerializer(source='user', read_only=True)
     my_user_data = serializers.SerializerMethodField(read_only=True)
     discount = serializers.SerializerMethodField(read_only=True)
     edit_url = serializers.SerializerMethodField(read_only=True)
@@ -16,7 +16,7 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = [
-            'user',
+            'owner',
             'url',
             'edit_url',
             'pk',
