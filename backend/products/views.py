@@ -12,6 +12,7 @@ from .serializers import ProductSerializer
 class ProductListCreateAPIView(UserQuerySetMixin, StaffEditorPermissionMixin, generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    allow_staff_view = False
 
     def perform_create(self, serializer):
         # serializer.save(user=self.request.user)
