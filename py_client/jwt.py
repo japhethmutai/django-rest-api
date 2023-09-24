@@ -92,6 +92,7 @@ class JWTClient:
         collection process.
         """
         endpoint = f"{self.base_endpoint}/token/" 
+        print(endpoint)
         username = input("What is your username?\n")
         password = getpass("What is your password?\n")
         r = requests.post(endpoint, json={'username': username, 'password': password}) 

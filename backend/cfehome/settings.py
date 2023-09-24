@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import environ
 import os
+import datetime
 
 env = environ.Env(
     # set casting, default value
@@ -147,7 +148,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
-        "api.authentication.TokenAuthentication"
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "api.authentication.TokenAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticatedOrReadOnly"
@@ -161,4 +163,10 @@ ALGOLIA = {
     'APPLICATION_ID': env('ALGOLIA_APPLICATION_ID'),
     'API_KEY': env('ALGOLIA_API_KEY'),
     'INDEX_PREFIX': 'maxi'
+}
+
+SIMPLE_JWT = {
+    "AUTH_HEADER_TYPES": "Bearer",
+    "ACCESS_TOKEN_LIFETIME": datetime.timedelta(seconds=30),
+    "REFRESH_TOKEN_LIFETIME": datetime.timedelta(minutes=1)
 }
