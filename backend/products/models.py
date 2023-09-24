@@ -36,6 +36,10 @@ class Product(models.Model):
     objects = ProductManager()
 
     @property
+    def path(self):
+        return f"/products/{self.pk}/"
+
+    @property
     def body(self):
         return self.content
 

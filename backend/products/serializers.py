@@ -26,6 +26,7 @@ class ProductSerializer(serializers.ModelSerializer):
             'price',
             'sale_price',
             'public',
+            'path',
         ]
     
     def update(self, instance, validated_data):
